@@ -1,0 +1,17 @@
+.spacer {
+  flex: 1 1 auto;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.nav {
+  position: fixed;
+  background-color: none;
+  z-index: 1;
+}
+a {
+  color: aliceblue;
+}
+.logo {
+  color: aliceblue;
+}

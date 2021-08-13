@@ -1,0 +1,71 @@
+<!-- <h1>Login Form</h1>
+<p>reactiveform works!</p> -->
+<head>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Quicksand:100,300,500"
+  />
+  <title>Transparent Login Form</title>
+</head>
+<div class="full-screen-container">
+  <div class="login-container">
+    <h3 class="login-title">User Login</h3>
+    <!-- userform is used for binding -->
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div class="input-group">
+          <label>Email Address</label>
+        </div>
+
+        <!-- form control name is used for binding to the form control -->
+        <input
+          type="text"
+          class="form-control"
+          formControlName="email"
+          placeholder="Please enter your email address here"
+        />
+      </div>
+      <!-- <div *ngIf="userForm.controls['email'].hasError('required')" class="alert alert-danger">
+    Please enter your email
+</div> -->
+
+      <small
+        *ngIf="userForm.controls['email'].hasError('pattern')"
+        class="alert alert-danger"
+        >Please enter a valid email address</small
+      >
+
+      <div class="form-group">
+        <div class="input-group">
+          <label><br />Password</label>
+        </div>
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          placeholder="Please enter your password"
+        />
+      </div>
+      <!-- <div *ngIf="userForm.controls['password'].hasError('minlength')" class="alert alert-danger">
+    Your password should contain atleast 5 characters
+</div> -->
+      <br />
+      <button
+        type="submit"
+        [disabled]="!userForm.valid"
+        class="btn btn-primary"
+      >
+        Sign In
+      </button>
+      <a class="register-customer" routerLink="/customerregister"
+        >Not Registered?</a
+      >
+      <div *ngIf="invalidLogin" class="error">
+        <div class="text-danger">Invalid credentials, please try again</div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- 
+<p>{{userForm.value.name}}</p>
+<p>{{userForm.value.password}}</p> -->
