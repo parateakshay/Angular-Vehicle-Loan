@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminDashboardComponent } from '../../admin/admin-dashboard/admin-dashboard.component';
+import { CustomerService } from '../../customer.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -6,10 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  // userName: string ="login";
+  customerEmail:any;
+  
+  constructor() {
+    
+    
   }
+  ngOnInit(): void 
+  {
+    this.customerEmail = window.sessionStorage.getItem("customerEmailSession")
+    // console.log(this.customerEmail)
+    // if(this.customerEmail==null)
+    // {
 
+    //   this.userName = "login"
+    // }
+    // else{
+    //   this.userName = "title";
+    //   console.log(this.userName)
+  
+    // }
+ 
+  }
+  
 }

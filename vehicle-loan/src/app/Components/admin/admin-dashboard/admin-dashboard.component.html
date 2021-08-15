@@ -1,0 +1,124 @@
+<p>admin-dashboard works!</p>
+  <div style="text-align: center; margin: 20px">
+    <span  style="text-align: center"
+      ><h1>Admin-Dashboard</h1></span
+    >
+  </div>
+  <div style="margin-left: 100px; margin-top: 20px; margin-right: 100px">
+    <mat-tab-group>
+      <mat-tab label="Customer List">
+        <div class="form-group row"></div>
+        <div class="form-group row">
+          <label
+            for="search"
+            class="col-sm-2 col-form-label"
+            style="text-align: right"
+            >Search
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="filterTerm" id="search" />
+          </div>
+        </div>
+        <!-- table_start -->
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Address</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let student of Students | searchfilter: searchValue"> -->
+            <tr *ngFor="let c of custList  | filter:filterTerm">
+              <td scope="col">{{c.customerId }}</td>
+              <td scope="col">{{c.customerName }}</td>
+              <td scope="col">{{c.customerEmail}}</td>
+              <td scope="col">{{c.customerPhone}}</td>
+              <td scope="col">{{c.address}}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </mat-tab>
+      <!-- 2nd column -->
+      <mat-tab label="Pending Forms">
+        <div class="form-group row"></div>
+        <div class="form-group row">
+          <label
+            for="search"
+            class="col-sm-2 col-form-label"
+            style="text-align: right"
+            >Search
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="filterTerm" id="search" />
+          </div>
+        </div>
+        <!-- table_start -->
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">LoanID</th>
+              <th scope="col">LoanAmount</th>
+              <th scope="col">LoanStatus</th>
+              <th scope="col"></th>
+
+              
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let student of Students | searchfilter: searchValue"> -->
+            <tr *ngFor="let l of pendingLoanList  | filter:filterTerm">
+              <!-- <td scope="col">{{l.loanId}}</td> -->
+              <td scope="col">{{l.loanId}}</td>
+              <td scope="col">{{l.loanAmount}}</td>
+              <td scope="col">{{l.loanStatus}}</td>
+              <td><button class="btn btn-success" (click)="accept(l)" style="margin-left: 20px;">Accept</button>
+                <button class="btn btn-danger" (click)="reject(l)" style="margin-left: 20px;">Reject</button>
+              </td>										 
+
+              
+            </tr>
+            
+            
+          </tbody>
+        </table>
+      </mat-tab>
+      <mat-tab label="Rejected Form">
+        <div class="form-group row"></div>
+        <div class="form-group row">
+          <label
+            for="search"
+            class="col-sm-2 col-form-label"
+            style="text-align: right"
+            >Seacrh
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="filterTerm" id="search" />
+          </div>
+        </div>
+        <!-- table_start -->
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">LoanId</th>
+              <th scope="col">LoanAmount</th>
+              <th scope="col">LoanStatus</th>
+             
+            </tr>
+            <tr *ngFor="let rl of rejectedLoanList  | filter:filterTerm">
+              <td scope="col">{{rl.loanId}}</td>
+              <td scope="col">{{rl.loanAmount}}</td>
+              <td scope="col">{{rl.loanStatus}}</td>
+            </tr>
+            
+          </thead>
+          
+        </table>
+      </mat-tab>
+    </mat-tab-group>
+  </div>

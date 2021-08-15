@@ -1,1 +1,62 @@
-<p>loan-offer works!</p>
+<div class="bs-example">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a href="#" class="navbar-brand">
+          <img src="/examples/images/logo.svg" height="28" alt="CoolBrand">
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav">
+              <a style="font-size: large;" routerLink="/customer-home" class="nav-item nav-link ">Home</a>
+              <a style="font-size: large;" routerLink="/customer-dashboard" class="nav-item nav-link">Profile</a>
+              <a style="font-size: large;" routerLink="/about-us" class="nav-item nav-link">About Us</a>
+              <a  style="font-size: large;" routerLink="/customer-home" class="nav-item nav-link" tabindex="-1">Reports</a>
+              <a style="font-size: large;" routerLink="/application-loan" class="nav-item nav-link active">Apply Loan</a>
+          </div>
+          <div class="navbar-nav ml-auto">
+              <a style="font-size: large;" routerLink="/customer-logout" class="nav-item nav-link">Logout</a>
+              <a style="font-size: large;" href="#" class="nav-item nav-link"></a>
+          </div>
+      </div>
+  </nav>
+</div>
+<div class = "main">
+<br>
+<h1 style="text-align:center">Loan Offer</h1>
+<br/>
+<div class="container">
+<form [formGroup]="loanOfferForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Loan Amount</label>
+    <input type="number" class="form-control" id="exampleInputEmail1" formControlName="loanAmount" aria-describedby="emailHelp" placeholder="Enter your Loan Amount">
+    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Interest Rate</label>
+    <input type="number" class="form-control" id="exampleInputPassword1" formControlName="interestRate" placeholder="" value="9.5" readonly>
+    <small id="emailHelp" class="form-text text-muted">We provide you an interest rate of 9.5%.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Time Period</label>
+    <input type="number" class="form-control" id="exampleInputPassword1" formControlName="timePeriod" placeholder="Enter the duration period in Months">
+  </div>
+  <div>
+  <button type="button" [disabled]="!loanOfferForm.valid" (click)="calculate()" class="btn btn-primary">Emi Scheduler</button>
+</div>
+<br/>
+<div *ngIf="show">
+  Your Equated Monthly Installment will be:
+  <p>₹{{EMI}}</p>
+  Your Total Interest Paid will be:
+  <p>₹{{interestPayable}}</p>
+
+</div>
+  <br>
+  <div>
+  <button (click) = "submit()" type="submit" [disabled]="!loanOfferForm.valid" class="btn btn-primary">Apply Loan</button>
+  </div>  
+</form>
+</div>
+</div>

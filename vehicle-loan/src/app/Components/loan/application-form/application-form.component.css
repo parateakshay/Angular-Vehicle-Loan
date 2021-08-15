@@ -1,0 +1,11 @@
+.eligibility {
+    text-align: center;
+  }
+  .form {
+    position: static;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+  .main {
+    background-color: rgb(186, 202, 214);
+  }

@@ -1,3 +1,29 @@
+<div class="bs-example">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a href="#" class="navbar-brand">
+          <img src="/examples/images/logo.svg" height="28" alt="CoolBrand">
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav">
+              <a style="font-size: large;" routerLink="/home" class="nav-item nav-link ">Home</a>
+              <a style="font-size: large;" routerLink="/login" class="nav-item nav-link">Profile</a>
+              <a style="font-size: large;" routerLink="/login" class="nav-item nav-link">Messages</a>
+              <a  style="font-size: large;" routerLink="/login" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+          </div>
+          
+          <div class="navbar-nav ml-auto">
+              <a style="font-size: large;"  routerLink="/customer-register" class="nav-item nav-link active">SIGN-IN</a>
+              <a href="#" class="nav-item nav-link"></a>
+              <a style="font-size: large;"  routerLink="/login" class="nav-item nav-link ">LOGIN</a>
+              <a href="#" class="nav-item nav-link"></a>
+          </div>
+      </div>
+  </nav>
+</div>
 <div class="full-screen-container">
   <div class="login-container">
     <h3 class="login-title">Welcome</h3>
@@ -25,24 +51,20 @@
       </div>
       <div class="input-group">
         <label>Phone Number</label>
-        <input type="number" formControlName="phone number" />
+        <input type="number" formControlName="phoneNumber" />
       </div>
       <div class="input-group">
         <label>Date Of Birth</label>
         <input type="date" formControlName="dob" />
       </div>
       <div class="input-group">
-        <label for="">Gender</label>
-        <span>
-          <input type="radio" id="male" name="gender" value="mail" />
-          <label for="male">Male</label>
-          <input type="radio" id="female" name="gender" value="female" />
-          <label for="female">Female</label>
-        </span>
+        <label>Address</label>
+        <input type="text" formControlName="Address" />
       </div>
+     
       <div class="input-group">
         <label>Security Question (Enter your Favorite Sport)</label>
-        <input type="text" formControlName="security question" />
+        <input type="text" formControlName="securityQuestion" />
       </div>
       <button
         type="submit"

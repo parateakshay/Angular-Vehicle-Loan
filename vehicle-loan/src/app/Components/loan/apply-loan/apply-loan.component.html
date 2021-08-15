@@ -1,196 +1,201 @@
-<div class="main">
-  <div class="eligibility">
-    <h1>Check Eligibility</h1>
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">
+            <img src="/examples/images/logo.svg" height="28" alt="CoolBrand">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a style="font-size: large;" routerLink="/customer-home" class="nav-item nav-link ">Home</a>
+                <a style="font-size: large;" routerLink="/customer-dashboard" class="nav-item nav-link">Profile</a>
+                <a style="font-size: large;" routerLink="/about-us" class="nav-item nav-link">About Us</a>
+                <a  style="font-size: large;" routerLink="/customer-home" class="nav-item nav-link" tabindex="-1">Reports</a>
+                <a style="font-size: large;" routerLink="/application-loan" class="nav-item nav-link active">Apply Loan</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                <a style="font-size: large;" routerLink="/customer-logout" class="nav-item nav-link">Logout</a>
+                <a style="font-size: large;" href="#" class="nav-item nav-link"></a>
+            </div>
+        </div>
+    </nav>
   </div>
+  <div class="main">
+<div class="container">
+  <form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()">
+      <h3>PERSONAL DETAILS:</h3>
+      <div class="mb-3">
+          <label for="Name" class="form-label">Name</label>
+          <input type="text" id="name1" formControlName="name1" class="form-control" value = {{customer.customerName}} readonly>
 
-  <div class="form">
-    <form [formGroup]="myReactiveForm">
-      <h2>Vehicle Details</h2>
-      <div class="row mb-3">
-        <label for="carmaker" class="col-sm-2 col-form-label">Car Maker</label>
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="carmaker"
-            formControlName="carmaker"
-          />
-        </div>
       </div>
-      <div class="row mb-3">
-        <label for="carmodel" class="col-sm-2 col-form-label">Car Model</label>
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="carmodel"
-            formControlName="carmodel"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="exshowroomprice" class="col-sm-2 col-form-label"
-          >Ex-showroom Price</label
-        >
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="exshowroomprice"
-            formControlName="ex-showroom-price"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="onroadprice" class="col-sm-2 col-form-label"
-          >On Road Price</label
-        >
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="onroadprice"
-            formControlName="on-road-price"
-          />
-        </div>
-      </div>
-      <br />
-      <hr />
-      <h2>Applicant Details</h2>
-      <div class="row mb-3">
-        <label for="name" class="col-sm-2 col-form-label">Name</label>
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            formControlName="name"
-          />
-        </div>
-      </div>
-      <div class="row mb-3">
-        <label for="age" class="col-sm-2 col-form-label">Age</label>
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="age"
-            formControlName="age"
-          />
-        </div>
-      </div>
-      <fieldset class="row mb-3">
-        <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-        <div class="col-sm-10">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="gridRadios"
-              id="gridRadios1"
-              value="option1"
-              checked
-              formControlName="gender"
-            />
-            <label class="form-check-label" for="gridRadios1"> Male </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="gridRadios"
-              id="gridRadios2"
-              value="option2"
-              formControlName="gender"
-            />
-            <label class="form-check-label" for="gridRadios2"> Female </label>
-          </div>
-        </div>
-      </fieldset>
+      <!-- <div class="mb-3">
+          <label for="Name2" class="form-label">Last name</label>
+          <input type="text" id="name2" formControlName="name2" class="form-control">
 
-      <select
-        class="form-select"
-        aria-label="Default select example"
-        style="margin-left: 175px; width: fit-content"
-        formControlName="type-of-employement"
-      >
-        <option selected>Type of Employement</option>
-        <option value="1">Self</option>
-        <option value="2">Service</option>
-        <option value="3">Business</option>
-      </select>
-      <div class="row mb-3">
-        <label for="yearlysalary" class="col-sm-2 col-form-label"
-          >Yearly Salary</label
-        >
-        <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            id="yearlysalary"
-            formControlName="yearly-salary"
-          />
-        </div>
+      </div> -->
+      <div class="mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input type="text" id="age" formControlName="age" class="form-control" readonly value = {{customer.dob}}>
       </div>
-      <fieldset class="row mb-3">
-        <legend class="col-form-label col-sm-2 pt-0">Existing EMI</legend>
-        <div class="col-sm-10">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="gridRadios"
-              id="gridRadios1"
-              value="option1"
-              checked
-              formControlName="existing-emi"
-            />
-            <label class="form-check-label" for="gridRadios1"> Yes </label>
+      <div class="mb-3">
+          <label for="Gender" class="form-label">Gender</label>
+          <input type="text" id="gender" formControlName="gender" class="form-control" readonly>
+
+      </div>
+      <div class="mb-3">
+          <label for="number" class="form-label">Mobile-number</label>
+          <input type="text" id="mobilenumber" formControlName="mobilenumber" class="form-control" value = {{customer.customerPhone}} readonly>
+
+      </div>
+      <div class="mb-3">
+          <label for="Email" class="form-label">Email-id</label>
+          <input type="email" class="form-control" id="emailid" formControlName="emailid" value = {{customer.customerEmail}} readonly>
+      </div>
+      <!-- <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="pass" formControlName="pass" class="form-control">
+
+      </div> -->
+      <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <input type="text" id="address" formControlName="address" class="form-control" readonly value = {{customer.address}}>
+
+      </div>
+      <!-- <div class="mb-3">
+          <label for="state" class="form-label">State</label>
+          <input type="text" id="state" formControlName="state" class="form-control">
+
+      </div>
+      <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input type="text" id="city" formControlName="city" class="form-control">
+
+      </div>
+      <div class="mb-3">
+          <label for="pincode" class="form-label">Pin-code</label>
+          <input type="text" id="pincode" formControlName="pincode" class="form-control">
+
+      </div> -->
+      <h3>EMPLOYMENT TYPE:</h3>
+      <p></p>
+      <div class="mb-3">
+          <label for="employmenttype" class="form-label">Employment Type</label>
+          <input type="text" id="employmenttype" formControlName="employmenttype" class="form-control" value = {{checkEligibity.annualSalary}}>
+      </div>
+      <div class="mb-3">
+          <label for="annualsal" class="form-label">Annual salary</label>
+          <input type="text" id="annualsalary" formControlName="annualsalary" class="form-control" value = {{checkEligibity.customerEmployment}}>
+
+      </div>
+      <div class="mb-3">
+          <label for="emi" class="form-label">Existing-EMI</label>
+          <input type="text" id="existingemi" formControlName="existingemi" class="form-control" value = {{checkEligibity.existingEmi}}>
+      </div>
+      <h3>VEHICLE DETAILS</h3>
+      <p></p>
+      <div class="mb-3">
+          <label for="Carmake" class="form-label">Car Make</label>
+          <input type="text" id="carmake" formControlName="carmake" class="form-control" value={{vehicle.vehicleMaker}} readonly>
+      </div>
+      <div class="mb-3">
+          <label for="carmodel" class="form-label">Car Model</label>
+          <input type="text" id="carmodel" formControlName="carmodel" class="form-control" value={{vehicle.vehicleModel}} readonly>
+
+      </div>
+      <div class="mb-3">
+          <label for="exshowroomprice" class="form-label">Ex-showroom Price</label>
+          <input type="text" id="exshowroomprice" formControlName="exshowroomprice" class="form-control" value={{vehicle.vehiclePrice}} readonly>
+      </div>
+      <h3>LOAN DETAILS:</h3>
+      <p></p>
+      <div class="mb-3">
+          <label for="loanamount" class="form-label">Loan-Amount</label>
+          <input type="text" id="loanamount" formControlName="loanamount" class="form-control" value = {{loan.loanAmount}}>
+      </div>
+      <div class="mb-3">
+          <label for="loantenure" class="form-label">LoanTenure</label>
+          <input type="text" id="loantenure" formControlName="loantenure" class="form-control" value = {{loan.loanTenure}}>
+
+      </div>
+      <div class="mb-3">
+          <label for="roi" class="form-label">Rate Of Interest</label>
+          <input type="text" id="rateofinterest" formControlName="rateofinterest" class="form-control" value = {{loan.bank.vehicleLoanInterest}}>
+
+      </div>
+      <div class="Identity">
+          <h3>IDENTITY DETAILS:</h3>
+          <div class="form-group row">
+              <p></p>
+              <label for="Aadhar card" class="col-sm-2 col-form-label">Aadhar card</label>
+              <div class="col-sm-10">
+                  <input type='file' (change)="onselectFile($event)" id="aadharcard" formControlName="aadharcard">
+                  <button type = "button" (click) = "onUploadAadhar()" [disabled]="flag">Upload</button>
+                  
+                  <div class="image-preview" id="imagePreview">
+                      <span class="image-preview__default-text">
+                          <img [src]="url">
+                          <div>
+                              Image Preview
+                          </div>
+                      </span>
+
+                  </div>
+              </div>
           </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="gridRadios"
-              id="gridRadios2"
-              value="option2"
-              formControlName="existing-emi"
-            />
-            <label class="form-check-label" for="gridRadios2"> No </label>
+          <div class="form-group row">
+              <label for="Pan card" class="col-sm-2 col-form-label">Pan card</label>
+              <div class="col-sm-10">
+                  <input type='file' (change)="onselectFile1($event)" id="pancard" formControlName="pancard">
+                  <button type = "button" (click) = "onUploadPancard()"[disabled]="flag1">Upload</button>
+                  <div class="image-preview" id="imagePreview">
+                      <span class="image-preview__default-text">
+                          <img [src]="url1">
+                          <div>
+                              Image Preview
+                          </div>
+                      </span>
+
+                  </div>
+              </div>
           </div>
-        </div>
-      </fieldset>
-      <br />
-      <hr />
-      <h2>Contact Details</h2>
-      <div class="row mb-3">
-        <label for="number" class="col-sm-2 col-form-label"
-          >Mobile Number</label
-        >
-        <div class="col-sm-10">
-          <input
-            type="number"
-            class="form-control"
-            id="number"
-            formControlName="mobile-number"
-          />
-        </div>
+          <div class="form-group row">
+              <label for="Photo" class="col-sm-2 col-form-label">Photo</label>
+              <div class="col-sm-10">
+                  <input type='file' (change)="onselectFile2($event)" id="pancard" formControlName="pancard">
+                  <button type = "button" (click) = "onUploadPhoto()"[disabled]="flag2">Upload</button>
+                  <div class="image-preview" id="imagePreview">
+                      <span class="image-preview__default-text">
+                          <img [src]="url2">
+                          <div>
+                              Image Preview
+                          </div>
+                      </span>
+
+                  </div>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="salary slip" class="col-sm-2 col-form-label">Six months salary slip</label>
+              <div class="col-sm-10">
+                  <input type='file' (change)="onselectFile3($event)" id="pancard" formControlName="pancard">
+                  <button type = "button" (click) = "onUploadSalarySlip()"[disabled]="flag3">Upload</button>
+                  <div class="image-preview" id="imagePreview">
+                      <span class="image-preview__default-text">
+                          <img [src]="url3">
+                          <div>
+                              Image Preview
+                          </div>
+                      </span>
+                  </div>
+              </div>
+          </div>
+
       </div>
-      <div class="row mb-3">
-        <label for="email" class="col-sm-2 col-form-label">Email ID</label>
-        <div class="col-sm-10">
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            formControlName="email"
-          />
-        </div>
-      </div>
-      <br />
-      <button style="margin-bottom: 20px" type="submit" class="btn btn-primary">
-        Check Eligibility
-      </button>
-    </form>
-  </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
 </div>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "vehicle-loan-f7f94": {
+      "hosting": {
+        "vehicle-loan": [
+          "vehicle-loan-f7f94"
+        ]
+      }
+    }
+  }
+}

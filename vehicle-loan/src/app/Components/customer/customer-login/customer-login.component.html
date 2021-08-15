@@ -1,71 +1,54 @@
-<!-- <h1>Login Form</h1>
-<p>reactiveform works!</p> -->
-<head>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Quicksand:100,300,500"
-  />
-  <title>Transparent Login Form</title>
-</head>
-<div class="full-screen-container">
-  <div class="login-container">
-    <h3 class="login-title">User Login</h3>
-    <!-- userform is used for binding -->
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <div class="input-group">
-          <label>Email Address</label>
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">
+            <img src="/examples/images/logo.svg" height="28" alt="CoolBrand">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a style="font-size: large;" routerLink="/home" class="nav-item nav-link ">Home</a>
+                <a style="font-size: large;" routerLink="/login" class="nav-item nav-link">Profile</a>
+                <a style="font-size: large;" routerLink="/login" class="nav-item nav-link">Messages</a>
+                <a  style="font-size: large;" routerLink="/login" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+            </div>
+            
+            <div class="navbar-nav ml-auto">
+                <a style="font-size: large;"  routerLink="/customer-register" class="nav-item nav-link">SIGN-IN</a>
+                <a href="#" class="nav-item nav-link"></a>
+                <a style="font-size: large;"  routerLink="/login" class="nav-item nav-link active">LOGIN</a>
+                <a href="#" class="nav-item nav-link"></a>
+            </div>
         </div>
-
-        <!-- form control name is used for binding to the form control -->
-        <input
-          type="text"
-          class="form-control"
-          formControlName="email"
-          placeholder="Please enter your email address here"
-        />
-      </div>
-      <!-- <div *ngIf="userForm.controls['email'].hasError('required')" class="alert alert-danger">
-    Please enter your email
-</div> -->
-
-      <small
-        *ngIf="userForm.controls['email'].hasError('pattern')"
-        class="alert alert-danger"
-        >Please enter a valid email address</small
-      >
-
-      <div class="form-group">
-        <div class="input-group">
-          <label><br />Password</label>
-        </div>
-        <input
-          type="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Please enter your password"
-        />
-      </div>
-      <!-- <div *ngIf="userForm.controls['password'].hasError('minlength')" class="alert alert-danger">
-    Your password should contain atleast 5 characters
-</div> -->
-      <br />
-      <button
-        type="submit"
-        [disabled]="!userForm.valid"
-        class="btn btn-primary"
-      >
-        Sign In
-      </button>
-      <a class="register-customer" routerLink="/customerregister"
-        >Not Registered?</a
-      >
-      <div *ngIf="invalidLogin" class="error">
-        <div class="text-danger">Invalid credentials, please try again</div>
-      </div>
-    </form>
+    </nav>
   </div>
-</div>
-<!-- 
-<p>{{userForm.value.name}}</p>
-<p>{{userForm.value.password}}</p> -->
+<body>
+  <div id="login">
+      
+      <div class="container">
+          <div id="login-row" class="row justify-content-center align-items-center">
+              <div id="login-column" class="col-md-6">
+                  <div id="login-box" class="col-md-12">
+                      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" id="login-form" class="form" action="" method="post">
+                          <h3 class="text-center text-info">Login</h3>
+                          <div class="form-group">
+                              <label for="username" class="text-info">Username:</label><br>
+                              <input type="text" name="username" id="username" class="form-control" formControlName="username">
+                          </div>
+                          <div class="form-group">
+                              <label for="password" class="text-info">Password:</label><br>
+                              <input type="text" name="password" id="password" class="form-control" formControlName = "password">
+                          </div>
+                          <div class="form-group">
+                              <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                          </div>
+                         
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>

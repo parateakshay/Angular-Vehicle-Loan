@@ -1,11 +1,24 @@
-.eligibility {
-  text-align: center;
+img{
+  max-width:180px;
 }
-.form {
-  position: static;
-  margin-left: 150px;
-  margin-right: 150px;
+.image-preview{
+  width: 300px;
+  min-height: 100px;
+  border: 2px solid #dddddd;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color:cornsilk;
+
 }
-.main {
-  background-color: rgb(248, 252, 255);
+.image-preview__image {
+  
+  width : 100%;
+}
+.main{
+  background-color: rgb(186, 202, 214);
+  padding-bottom: 20%;
+
 }

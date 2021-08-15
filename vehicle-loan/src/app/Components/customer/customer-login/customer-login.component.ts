@@ -1,63 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ngbCarouselTransitionIn } from '@ng-bootstrap/ng-bootstrap/carousel/carousel-transition';
 import { CustomerService } from '../../customer.service';
+import { HomeComponent } from '../../home/home/home.component';
+import { NavigationBarComponent } from '../../navbar/navigation-bar/navigation-bar.component';
 import { Customer } from '../customer';
+
 
 @Component({
   selector: 'app-customer-login',
   templateUrl: './customer-login.component.html',
-  styleUrls: ['./customer-login.component.css'],
+  styleUrls: ['./customer-login.component.css']
 })
 export class CustomerLoginComponent implements OnInit {
-  userForm: FormGroup;
-  customers: Customer[] = [];
+  // nc:NavigationBarComponent = new NavigationBarComponent;
+  // hc:HomeComponent = new HomeComponent();
+  loginForm = new FormGroup({
+    username: new FormControl(),
+    password: new FormControl()
+  })
+  customer:Customer = new Customer;
+  customerName:string = "";
 
-  specificCustomer: Customer | undefined;
-  formCustomer: Customer | undefined;
-  invalidLogin: boolean = false;
+  constructor(private customerService:CustomerService, private router:Router) { }
 
-  constructor(fb: FormBuilder, private customerservice: CustomerService) {
-    this.userForm = fb.group({
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      ],
-      password: ['', [Validators.required, Validators.minLength(5)]],
-    });
+  ngOnInit(): void {
   }
-
-  ngOnInit() {
-    this.getCustomers();
-  }
-
-  public getCustomers() {
-    this.customerservice.getCustomers().subscribe((data: Customer[]) => {
-      this.customers = data;
-    });
-  }
-
-  onSubmit() {
-    this.formCustomer = this.userForm.value;
-
-    if (
-      this.customers.find((x) => x.email == this.formCustomer?.email) != null
-    ) {
-      this.specificCustomer = this.customers.find(
-        (x) => x.email == this.formCustomer?.email
-      );
-      if (this.specificCustomer?.password === this.formCustomer?.password) {
-        this.invalidLogin = false;
-        console.log('Valid Credentials');
-      } else {
-        this.invalidLogin = true;
-        console.log('Invalid Credentials, Please try again');
+  onSubmit()
+  {
+    console.log(this.loginForm.value);
+    this.customerService.getCustomerByEmail(this.loginForm.value.username).subscribe(
+      data=>
+      {
+        console.log(data)
+        this.customer = data;
+        console.log(data['customerName'])
+        if(this.loginForm.value.password==data['customerPassword'])
+      {
+        console.log("valid")
+        window.sessionStorage.setItem("customerEmailSession",data['customerEmail'])
+        window.sessionStorage.setItem("customerIdsession",data['customerId'].toString())
+        // sessionStorage.setItem("CustomerSession",JSON.stringify(data))
+        // console.log(sessionStorage.getItem("CustomerSession"))
+       
+        this.router.navigateByUrl('/customer-home')
       }
-    } else {
-      this.invalidLogin = true;
-      console.log('Member not found!!');
-    }
+      else{
+
+        console.log("not valid")
+      }
+      this.customerName = data['customerName']
+      }
+    
+    )
+      
+      
   }
+
+  
+
 }

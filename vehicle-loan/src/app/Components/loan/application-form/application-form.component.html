@@ -1,1 +1,225 @@
-<p>application-form works!</p>
+<div class="bs-example">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a href="#" class="navbar-brand">
+          <img src="/examples/images/logo.svg" height="28" alt="CoolBrand">
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav">
+              <a style="font-size: large;" routerLink="/customer-home" class="nav-item nav-link ">Home</a>
+              <a style="font-size: large;" routerLink="/customer-dashboard" class="nav-item nav-link">Profile</a>
+              <a style="font-size: large;" routerLink="/about-us" class="nav-item nav-link">About Us</a>
+              <a  style="font-size: large;" routerLink="/customer-home" class="nav-item nav-link" tabindex="-1">Reports</a>
+              <a style="font-size: large;" routerLink="/application-loan" class="nav-item nav-link active">Apply Loan</a>
+          </div>
+          <div class="navbar-nav ml-auto">
+              <a style="font-size: large;" routerLink="/customer-logout" class="nav-item nav-link">Logout</a>
+              <a style="font-size: large;" href="#" class="nav-item nav-link"></a>
+          </div>
+      </div>
+  </nav>
+</div>
+<div class="main">
+    <div class="eligibility">
+      <h1>Check Eligibility</h1>
+    </div>
+  
+    <div class="form">
+      <form (ngSubmit)="onSubmit()" [formGroup]="checkEligibilityForm">
+        <h2>Vehicle Details</h2>
+        <div class="row mb-3">
+          <label for="carmaker" class="col-sm-2 col-form-label">Car Maker</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="carmaker"
+              formControlName="carmaker"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="carmodel" class="col-sm-2 col-form-label">Car Model</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="carmodel"
+              formControlName="carmodel"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="exshowroomprice" class="col-sm-2 col-form-label"
+            >Ex-showroom Price</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="exshowroomprice"
+              formControlName="exshowroomprice"
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="onroadprice" class="col-sm-2 col-form-label"
+            >On Road Price</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="onroadprice"
+              formControlName="onroadprice"
+            />
+          </div>
+        </div>
+        <br />
+        <hr />
+        
+        <h2>Applicant Details</h2>
+        <div class="row mb-3">
+          <label for="name" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+              value = {{customerName}}
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="age" class="col-sm-2 col-form-label">Age</label>
+          <div class="col-sm-10">
+            <input
+              type="number"
+              class="form-control"
+              id="age"
+              formControlName="age"
+              value = {{customerAge}}
+            />
+          </div>
+        </div>
+        <fieldset class="row mb-3">
+          <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gender"
+                id="gridRadios1"
+                value="Male"
+                checked
+                formControlName="gender"
+              />
+              <label class="form-check-label" for="gridRadios1"> Male </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="gender"
+                id="gridRadios2"
+                value="Female"
+                formControlName="gender"
+              />
+              <label class="form-check-label" for="gridRadios2"> Female </label>
+            </div>
+          </div>
+        </fieldset>
+  
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          style="margin-left: 175px; width: fit-content"
+          formControlName="typeofemployement"
+        >
+          <option selected>Type of Employement</option>
+          <option value="Self">Self</option>
+          <option value="Service">Service</option>
+          <option value="Business">Business</option>
+        </select>
+        <div class="row mb-3">
+          <label for="yearlysalary" class="col-sm-2 col-form-label"
+            >Yearly Salary</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              class="form-control"
+              id="yearlysalary"
+              formControlName="yearlysalary"
+            />
+          </div>
+        </div>
+        <fieldset class="row mb-3">
+          <legend class="col-form-label col-sm-2 pt-0">Existing EMI</legend>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="existingemi"
+                id="gridRadios1"
+                value="yes"
+                checked
+                formControlName="existingemi"
+              />
+              <label class="form-check-label" for="gridRadios1"> Yes </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="existingemi"
+                id="gridRadios2"
+                value="no"
+                formControlName="existingemi"
+              />
+              <label class="form-check-label" for="gridRadios2"> No </label>
+            </div>
+          </div>
+        </fieldset>
+        <br />
+        <hr />
+        <h2>Contact Details</h2>
+        <div class="row mb-3">
+          <label for="number" class="col-sm-2 col-form-label"
+            >Mobile Number</label
+          >
+          <div class="col-sm-10">
+            <input
+              type="number"
+              class="form-control"
+              id="number"
+              formControlName="mobilenumber"
+              value = {{customerPhone}}
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label for="email" class="col-sm-2 col-form-label">Email ID</label>
+          <div class="col-sm-10">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              value = {{customerEmail}}
+            />
+          </div>
+        </div>
+        <br />
+        <button style="margin-bottom: 20px" type="submit" class="btn btn-primary">
+          Check Eligibility
+        </button>
+      </form>
+    </div>
+  </div>
