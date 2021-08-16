@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CustomerService } from '../../customer.service';
 import { Customer } from '../../customer/customer';
 import { Loan } from '../../loan/Loan';
@@ -14,11 +15,19 @@ export class AdminDashboardComponent implements OnInit {
   custList: Customer[] = [];
   pendingLoanList : Loan[]=[];
   rejectedLoanList:Loan[]=[];
-
-  constructor(private adminService:AdminService) { }
+  adminName:any;
+  constructor(private adminService:AdminService,private router:Router) { }
 
   ngOnInit(): void 
   {
+    this.adminName = window.sessionStorage.getItem("adminName");
+    console.log(this.adminName)
+    if(this.adminName==null)
+    {
+      this.router.navigateByUrl("/home");
+
+    }
+    
     this.loadData();
   }
     reject(l:Loan){
@@ -27,6 +36,8 @@ export class AdminDashboardComponent implements OnInit {
     console.log(l);
     this.adminService.rejectLoan(l).subscribe(data => console.log(data), error => console.log(error));
     this.loadData();
+    // this.ngOnInit();
+    
 
   }
 
@@ -64,6 +75,14 @@ export class AdminDashboardComponent implements OnInit {
 
     })
 
+
+  }
+
+
+  adminLogout()
+  {
+    window.sessionStorage.removeItem("adminName")
+    this.router.navigateByUrl('/home')
 
   }
 }

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AboutUsComponent } from './Components/about/about-us/about-us.component';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
+import { AdminLoginComponent } from './Components/admin/admin-login/admin-login.component';
 import { CustomerDashboardComponent } from './Components/customer/customer-dashboard/customer-dashboard.component';
 import { CustomerHomeComponent } from './Components/customer/customer-home/customer-home.component';
 import { CustomerLoginComponent } from './Components/customer/customer-login/customer-login.component';
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path:'admin-dashboard',component:AdminDashboardComponent},
   {path:'customer-home',component:CustomerHomeComponent},
   {path:'customer-register',component:CustomerRegisterComponent},
-  {path:'about-us',component:AboutUsComponent}
+  {path:'about-us',component:AboutUsComponent},
+  {path:'admin-login',component:AdminLoginComponent}
 ];
 
 @NgModule({

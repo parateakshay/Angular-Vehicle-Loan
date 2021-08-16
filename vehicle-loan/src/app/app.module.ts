@@ -33,6 +33,7 @@ import {AngularFireModule} from '@angular/fire'
 import { CustomerHomeComponent } from './Components/customer/customer-home/customer-home.component';
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdminLoginComponent } from './Components/admin/admin-login/admin-login.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
     NavigationBarComponent,
     CustomerHomeComponent,
     AdminDashboardComponent,
+    AdminLoginComponent,
   ],
   imports: [
 

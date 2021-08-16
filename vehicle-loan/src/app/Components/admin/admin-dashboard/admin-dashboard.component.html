@@ -1,10 +1,36 @@
-<p>admin-dashboard works!</p>
+
+
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class = "logo" href="#" class="navbar-brand">
+            <img src="https://carknowlage.com/wp-content/uploads/2020/09/Sbi-car-loan-3.png" height="50" alt="">Deals on Wheels
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                
+                <a style="font-size: large;" routerLink="/admin-dashboard" class="nav-item nav-link active">Dash-board</a>
+           
+            </div>
+            <div class="navbar-nav ml-auto">
+                <a style="font-size: large;" (click) = "adminLogout()" class="nav-item nav-link">Logout</a>
+                <a style="font-size: large;"  class="nav-item nav-link"></a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class = "main">
+  <br>
+<pre style="font-size: medium;">     Welcome {{adminName}}</pre>
   <div style="text-align: center; margin: 20px">
     <span  style="text-align: center"
       ><h1>Admin-Dashboard</h1></span
     >
   </div>
-  <div style="margin-left: 100px; margin-top: 20px; margin-right: 100px">
+  <div  style="margin-left: 100px; margin-top: 20px; margin-right: 100px">
     <mat-tab-group>
       <mat-tab label="Customer List">
         <div class="form-group row"></div>
@@ -122,3 +148,4 @@
       </mat-tab>
     </mat-tab-group>
   </div>
+</div>

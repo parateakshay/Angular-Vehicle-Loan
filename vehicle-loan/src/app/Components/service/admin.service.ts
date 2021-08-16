@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Admin } from '../admin/Admin';
 import { Loan } from '../loan/Loan';
 
 @Injectable({
@@ -37,4 +38,11 @@ rejectLoan(loan:Loan):Observable<Object> {
       console.log(loan)	;
       return this.httpClient.post(`${this.base_url}` + '/applyLoan/acceptLoan',loan);		
     }
+
+
+  getAdminByEmail(adminEmail:string)
+  {
+    // console.log(this.http.get(this.baseUrl+'/loginCustomerByEmail/'+customerEmail))
+    return this.httpClient.get<Admin>(this.base_url+'/loginAdminByEmail/'+adminEmail)
+  }
 }
