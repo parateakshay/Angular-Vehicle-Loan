@@ -68,5 +68,16 @@ export class CustomerService {
     return this.http.post(`${this.baseUrl}`+'/applyLoan/apply', loan);
   }
 
-  
+  // addForms(customerId:number,aadharcard:string,photo:string,pancard:string,payslip:string)
+  // {
+  //   console.log(customerId)
+  //   console.log(aadharcard)
+  //   return this.http.get<any>("http://localhost:8090/api/vehicleloan/checkEligibility/add-forms/"+customerId+'/'+aadharcard+'/'+photo+'/'+pancard+'/'+payslip);
+    
+  // } 
+  addForms(form:object):Observable<object>{
+    
+    // console.log(this.http.post(`${this.baseUrl}`+'/checkEligibility/check-Eligiblity', checkEligibility))
+    return this.http.post(`${this.baseUrl}`+'/checkEligibility/add-chkforms', form);
+  }
 }

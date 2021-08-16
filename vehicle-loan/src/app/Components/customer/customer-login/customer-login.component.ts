@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ngbCarouselTransitionIn } from '@ng-bootstrap/ng-bootstrap/carousel/carousel-transition';
 import { CustomerService } from '../../customer.service';
@@ -17,11 +17,13 @@ export class CustomerLoginComponent implements OnInit {
   // nc:NavigationBarComponent = new NavigationBarComponent;
   // hc:HomeComponent = new HomeComponent();
   loginForm = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl()
+    username: new FormControl(null,[Validators.required,Validators.email]),
+    password: new FormControl(null,Validators.required)
   })
   customer:Customer = new Customer;
   customerName:string = "";
+  invalidLogin:boolean=false;
+  notCustomer:boolean=false;
 
   constructor(private customerService:CustomerService, private router:Router) { }
 
@@ -33,6 +35,10 @@ export class CustomerLoginComponent implements OnInit {
     this.customerService.getCustomerByEmail(this.loginForm.value.username).subscribe(
       data=>
       {
+        if(data==null){
+          this.notCustomer=true;
+          this.invalidLogin=false;
+        }
         console.log(data)
         this.customer = data;
         console.log(data['customerName'])
@@ -48,6 +54,8 @@ export class CustomerLoginComponent implements OnInit {
       }
       else{
 
+        this.invalidLogin=true;
+        this.notCustomer=false;
         console.log("not valid")
       }
       this.customerName = data['customerName']

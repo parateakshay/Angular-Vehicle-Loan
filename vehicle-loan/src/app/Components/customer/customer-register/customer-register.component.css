@@ -9,7 +9,7 @@ body {
 }
 
 .full-screen-container {
-  /* background-image: url("D:\LNT INFOTECH\Training\Gladiator Project\vehicle-loan\src\app\Components\customer\customer-register\background_image.jpg"); */
+  background-image: url("https://imgcdnblog.carmudi.com.ph/wp-content/uploads/2017/07/21112246/Car_refinancing-1.jpg");
   background-color: #17a2b8;
   height: auto;
   width: auto;
@@ -22,17 +22,16 @@ body {
 }
 
 .login-container {
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
+  background-color: hsla(201, 100%, 6%, 0.6);
   padding: 50px 30px;
   min-width: 400px;
-  width: 60%;
-  margin-top: 100px;
+  width: 50%;
   max-width: 600px;
+  margin-top: 150px;
 }
 
 .login-title {
-  color: #17a2b8;
+  color: #9ee3ee;
   text-align: center;
   margin: 0;
   margin-bottom: 25px;
@@ -47,7 +46,7 @@ body {
 }
 
 .input-group label {
-  color:#17a2b8;
+  color: #fbffff;
   font-weight: lighter;
   font-size: 1.2em;
   margin-bottom: 7px;
@@ -60,7 +59,7 @@ body {
   border: 1px solid hsl(201, 100%, 6%);
   outline: none;
   border-radius: 5px;
-  color: #17a2b8;
+  color: #f3f9fa;
   font-weight: lighter;
 }
 

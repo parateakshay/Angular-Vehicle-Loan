@@ -1,0 +1,7 @@
+.emichart{position:relative;width:360px;height:360px;margin:0 auto;text-align:center;}
+    #chartContainer .canvasjs-chart-toolbar{display:none;}
+    .emichart rect{display:none;}
+    svg {text-anchor: middle;alignment-baseline: middle;padding-bottom:5em;}
+    .highcharts-exporting-group,.highcharts-credits{display:none;}
+     .emichart .highcharts-legend rect{display:block;}
+    svg:not(:root) {overflow: visible;}

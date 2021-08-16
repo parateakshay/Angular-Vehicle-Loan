@@ -3,17 +3,36 @@ body {
   padding: 0;
   background-color: #17a2b8;
   height: 100vh;
+
+  background-image: url("https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2020/04/full-coverage-car-insurance-e1583214998417.jpg");
+  height: auto;
+  width: auto;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 #login .container #login-row #login-column #login-box {
-  margin-top: 120px;
+  background-color: hsla(201, 100%, 6%, 0.6);
+  padding: 50px 30px;
+  min-width: 400px;
+  /* width: 60%; */
+  margin-left: -50%;
+  margin-top: 100px;
   max-width: 600px;
-  height: 320px;
-  border: 1px solid #9C9C9C;
-  background-color: #EAEAEA;
+  margin-bottom: 65px;
 }
 #login .container #login-row #login-column #login-box #login-form {
   padding: 20px;
 }
-#login .container #login-row #login-column #login-box #login-form #register-link {
+#login
+  .container
+  #login-row
+  #login-column
+  #login-box
+  #login-form
+  #register-link {
   margin-top: -85px;
 }

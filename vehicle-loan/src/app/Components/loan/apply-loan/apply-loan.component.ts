@@ -9,6 +9,7 @@ import {AngularFireStorage} from '@angular/fire/storage'
 import { Customer } from '../../customer/customer';
 import { Loan } from '../Loan';
 import { CustomerService } from '../../customer.service';
+import { Forms } from '../Forms';
 
 @Component({
   selector: 'app-apply-loan',
@@ -45,7 +46,12 @@ export class ApplyLoanComponent implements OnInit {
   });
   customerEmailsession:any = window.sessionStorage.getItem('customerEmailSession');
   customer:Customer = new Customer;
+  customerNew:Customer = new Customer;
+  customerId:any;
+  chkForm:Forms = new Forms();
   checkEligibity:CheckEligibility = new CheckEligibility(this.customer,"",0,"","","","","");
+  checkEligibityNew:CheckEligibility = new CheckEligibility(this.customerNew,"",0,"","","","","");
+  
   vehicle:Vehicle = {customerId:0,vehicleMaker:"",vehicleModel:"",vehiclePrice:0,vehicleExShowroomPrice:0}
   loan:Loan = new Loan;
   date = new Date();
@@ -58,7 +64,7 @@ export class ApplyLoanComponent implements OnInit {
   constructor(private customerService:CustomerService, private router:Router, private http:HttpClient, private af:AngularFireStorage) { }
 
   ngOnInit(): void {
-    
+    this.customerId = window.sessionStorage.getItem("customerIdsession");
 
     this.customerService.getCustomerByEmail(this.customerEmailsession).subscribe(
       data=>
@@ -125,7 +131,7 @@ export class ApplyLoanComponent implements OnInit {
         reader.readAsDataURL(e.target.files[0]);
         reader.onload=(event:any)=>{
           this.url=event.target.result;
-          console.log(this.url)
+         
         }
       }
     }
@@ -134,7 +140,12 @@ export class ApplyLoanComponent implements OnInit {
       
       console.log(this.path)
       this.af.upload("/images/"+this.customerEmailsession+" aadharCard",this.path)
-      this.path1 = this.customerEmailsession+" aadharCard"
+      let storage = this.af.storage;
+      storage.ref("images/"+this.customerEmailsession+" aadharCard" ).getDownloadURL().then((url_new) => {
+        console.log(url_new)
+        this.path1 = url_new
+      })
+      // this.path1 = this.customerEmailsession+" aadharCard"
       this.flag = true;
     }
 
@@ -150,7 +161,7 @@ export class ApplyLoanComponent implements OnInit {
         reader.readAsDataURL(e.target.files[0]);
         reader.onload=(event:any)=>{
           this.url1=event.target.result;
-          console.log(this.url)
+         
         }
       }
       
@@ -159,7 +170,12 @@ export class ApplyLoanComponent implements OnInit {
     {
       console.log(this.path)
       this.af.upload("/images/"+this.customerEmailsession+" PanCard",this.path)
-      this.path2 = this.customerEmailsession+" PanCard"
+      let storage = this.af.storage;
+      storage.ref("images/"+this.customerEmailsession+" PanCard").getDownloadURL().then((url_new) => {
+        console.log(url_new)
+        this.path2 = url_new
+      })
+      // this.path2 = this.customerEmailsession+" PanCard"
       this.flag1 = true;
     }
 
@@ -173,7 +189,7 @@ export class ApplyLoanComponent implements OnInit {
         reader.readAsDataURL(e.target.files[0]);
         reader.onload=(event:any)=>{
           this.url2=event.target.result;
-          console.log(this.url)
+         
         }
       }
     }
@@ -181,7 +197,12 @@ export class ApplyLoanComponent implements OnInit {
     {
       console.log(this.path)
       this.af.upload("/images/"+this.customerEmailsession+" Photo",this.path)
-      this.path3 = this.customerEmailsession+" Photo"
+      let storage = this.af.storage;
+      storage.ref("images/"+this.customerEmailsession+" Photo").getDownloadURL().then((url_new) => {
+        console.log(url_new)
+        this.path3 = url_new
+      })
+      // this.path3 = this.customerEmailsession+" Photo"
       this.flag2 = true;
     }
 
@@ -197,24 +218,41 @@ export class ApplyLoanComponent implements OnInit {
         reader.readAsDataURL(e.target.files[0]);
         reader.onload=(event:any)=>{
           this.url3=event.target.result;
-          console.log(this.url)
+          
         }
       }
     }
     onUploadSalarySlip()
     {
       console.log(this.path)
-      this.af.upload("/images/"+this.customerEmailsession+" SalarySlip",this.path)
-      this.path4 = this.customerEmailsession+" SalarySlip"
+      
+      let c =  this.af.upload("/images/"+this.customerEmailsession+" SalarySlip",this.path)
+      let storage = this.af.storage;
+      storage.ref("images/"+this.customerEmailsession+" SalarySlip").getDownloadURL().then((url_new) => {
+        console.log(url_new)
+        this.path4 = url_new
+      })
+      // console.log(this.af.storage.refFromURL("gs://vehicle-loan-f7f94.appspot.com/images/akshay.parate@somaiya.edu SalarySlip"))
+      // this.path4 = this.customerEmailsession+" SalarySlip"
       this.flag3 = true;
+      
     }
 
     onSubmit(){
-      console.log(this.myReactiveForm)
-      console.log(this.url)
-      console.log(this.url1)
-      console.log(this.url2)
-      console.log(this.url3)
+      this.chkForm.aadhar = this.path1;
+      this.chkForm.pancard = this.path2
+      this.chkForm.payslip = this.path4
+      this.chkForm.photo = this.path3
+      this.chkForm.customerId = this.customerId
+      
+      
+      this.customerService.addForms(this.chkForm)
+      .subscribe(
+        data2=>
+        {
+          console.log(data2)
+        })
       this.router.navigateByUrl('/customer-dashboard')
+      
     }
 }

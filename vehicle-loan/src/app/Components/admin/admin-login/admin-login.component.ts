@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../../service/admin.service';
 import { Admin } from '../Admin';
@@ -11,11 +11,13 @@ import { Admin } from '../Admin';
 })
 export class AdminLoginComponent implements OnInit {
   loginForm = new FormGroup({
-    username: new FormControl(),
-    password: new FormControl()
+    username: new FormControl(null,[Validators.required,Validators.email]),
+    password: new FormControl(null,Validators.required)
   })
   adminName:string = "";
   admin:Admin = new Admin;
+  invalidLogin:boolean=false;
+  notAdmin:boolean=false;
   constructor(private adminService:AdminService,private router:Router) { }
 
   ngOnInit(): void {
@@ -29,7 +31,12 @@ export class AdminLoginComponent implements OnInit {
       {
         console.log(data)
         this.admin = data;
-        console.log(data['adminEmail'])
+        // console.log(data['adminEmail'])
+        if(data==null){
+          this.notAdmin=true;
+          this.invalidLogin=false;
+
+        }
         if(this.loginForm.value.password==data['adminPassword'])
       {
         window.sessionStorage.setItem("adminName",data['adminName'])
@@ -37,8 +44,10 @@ export class AdminLoginComponent implements OnInit {
         
         this.router.navigateByUrl('/admin-dashboard')
       }
-      else{
+      else{   
 
+        this.invalidLogin=true;
+        this.notAdmin=false;
         console.log("not valid")
       }
       

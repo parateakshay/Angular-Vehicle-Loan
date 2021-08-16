@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '../../customer.service';
 import { Customer } from '../../customer/customer';
+import { CheckEligibility } from '../../loan/CheckEligibility';
 import { Loan } from '../../loan/Loan';
 import { AdminService } from '../../service/admin.service';
 
@@ -12,11 +13,14 @@ import { AdminService } from '../../service/admin.service';
 })
 export class AdminDashboardComponent implements OnInit {
   filterTerm: string = "";
+  customer:Customer = new Customer;
+  chk_new:CheckEligibility = new CheckEligibility(this.customer,"",0,"","","","","");
+  checkEligibity:CheckEligibility = new CheckEligibility(this.customer,"",0,"","","","","");
   custList: Customer[] = [];
   pendingLoanList : Loan[]=[];
   rejectedLoanList:Loan[]=[];
   adminName:any;
-  constructor(private adminService:AdminService,private router:Router) { }
+  constructor(private adminService:AdminService,private customerService:CustomerService,private router:Router) { }
 
   ngOnInit(): void 
   {
@@ -43,7 +47,7 @@ export class AdminDashboardComponent implements OnInit {
 
   accept(l:Loan){
 
-    console.log("Rejected");
+    
     console.log(l);
     this.adminService.acceptLoan(l).subscribe(data => console.log(data), error => console.log(error));
     this.loadData();
@@ -62,6 +66,7 @@ export class AdminDashboardComponent implements OnInit {
     this.adminService.getPendingLoans().subscribe((data: Loan[]) => {
 
       this.pendingLoanList = data
+      
 
       console.log(this.pendingLoanList)
 
@@ -78,6 +83,54 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
+  getAadharLink(loan_temp:Loan)
+  {
+    this.customerService.getEligibility(loan_temp.customer.customerId).subscribe(
+      data1=>
+      {
+         
+         window.open(data1['aadharCard'], "_blank");
+      })
+
+    // console.log(loan_temp.customer.customerId)
+
+  }
+  getPayLink(loan_temp:Loan)
+  {
+    this.customerService.getEligibility(loan_temp.customer.customerId).subscribe(
+      data1=>
+      {
+        
+         window.open(data1['paySlip'], "_blank");
+      })
+
+    // console.log(loan_temp.customer.customerId)
+
+  }
+  getPhotoLink(loan_temp:Loan)
+  {
+    this.customerService.getEligibility(loan_temp.customer.customerId).subscribe(
+      data1=>
+      {
+         
+         window.open(data1['proPic'], "_blank");
+      })
+
+    // console.log(loan_temp.customer.customerId)
+
+  }
+  getPanLink(loan_temp:Loan)
+  {
+    this.customerService.getEligibility(loan_temp.customer.customerId).subscribe(
+      data1=>
+      {
+         console.log(data1)
+         window.open(data1['pancard'], "_blank");
+      })
+
+   
+
+  }
 
   adminLogout()
   {

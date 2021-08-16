@@ -13,6 +13,7 @@ import { Vehicle } from '../Vehicle';
   styleUrls: ['./loan-offer.component.css']
 })
 export class LoanOfferComponent implements OnInit {
+  date: Date = new Date();  
   customerEmailsession:any = window.sessionStorage.getItem('customerEmailSession');
   customer:Customer = new Customer;
   vehicle:Vehicle = {customerId:0,vehicleMaker:"",vehicleModel:"",vehiclePrice:0,vehicleExShowroomPrice:0}
@@ -80,9 +81,9 @@ export class LoanOfferComponent implements OnInit {
     this.R=this.loanOfferForm.get("interestRate")?.value/1200
     this.n=this.loanOfferForm.get("timePeriod")?.value
 
-    this.EMI=  (this.P*this.R) * (((1+this.R)*this.n)/ (((1+this.R)*this.n)-1))
+    this.EMI=  parseFloat(((this.P*this.R) * (((1+this.R)**this.n)/ (((1+this.R)**this.n)-1))).toFixed(2))
 
-    this.interestPayable= ((this.EMI*this.n)-this.P)
+    this.interestPayable= parseFloat(((this.EMI*this.n)-this.P).toFixed(2))
 
     console.log( this.EMI  )
 
@@ -94,11 +95,10 @@ export class LoanOfferComponent implements OnInit {
     this.loan.loanStatus = "Waiting";
     this.loan.loanTenure = this.loanOfferForm.value.timePeriod
     this.loan.loanAmount = this.loanOfferForm.value.loanAmount
-    this.loan.loanApplicationDate = "06/05/2021";
+    this.loan.loanApplicationDate = this.date.toString();
     
     console.log(this.loan)
     this.customerService.applyLoan(this.loan).subscribe(data =>console.log(data),error =>console.log(error));
     this.router.navigateByUrl('/apply-loan')
   }
-
 }

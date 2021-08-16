@@ -11,6 +11,7 @@ import { CustomerRegisterComponent } from './Components/customer/customer-regist
 import { HomeComponent } from './Components/home/home/home.component';
 import { ApplicationFormComponent } from './Components/loan/application-form/application-form.component';
 import { ApplyLoanComponent } from './Components/loan/apply-loan/apply-loan.component';
+import { EmiCalculatorComponent } from './Components/loan/emi-calculator/emi-calculator.component';
 import { LoanOfferComponent } from './Components/loan/loan-offer/loan-offer.component';
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path:'customer-home',component:CustomerHomeComponent},
   {path:'customer-register',component:CustomerRegisterComponent},
   {path:'about-us',component:AboutUsComponent},
-  {path:'admin-login',component:AdminLoginComponent}
+  {path:'admin-login',component:AdminLoginComponent},
+  {path:'emi-calculator',component:EmiCalculatorComponent}
 ];
 
 @NgModule({

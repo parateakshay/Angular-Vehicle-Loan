@@ -34,6 +34,7 @@ import { CustomerHomeComponent } from './Components/customer/customer-home/custo
 import { AdminDashboardComponent } from './Components/admin/admin-dashboard/admin-dashboard.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AdminLoginComponent } from './Components/admin/admin-login/admin-login.component';
+import { EmiCalculatorComponent } from './Components/loan/emi-calculator/emi-calculator.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     CustomerHomeComponent,
     AdminDashboardComponent,
     AdminLoginComponent,
+    EmiCalculatorComponent,
   ],
   imports: [
 

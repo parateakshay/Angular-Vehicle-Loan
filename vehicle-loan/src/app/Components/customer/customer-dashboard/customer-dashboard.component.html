@@ -1,0 +1,174 @@
+
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">
+          <img src="https://carknowlage.com/wp-content/uploads/2020/09/Sbi-car-loan-3.png" height="50" alt="">Deals on Wheels
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a style="font-size: large;" routerLink="/customer-home" class="nav-item nav-link ">Home</a>
+                <a style="font-size: large;" routerLink="/customer-dashboard" class="nav-item nav-link active">Profile</a>
+                <a style="font-size: large;" routerLink="/about-us" class="nav-item nav-link">About Us</a>
+                <a style="font-size: large;" routerLink="/application-loan" class="nav-item nav-link">Apply Loan</a>
+            </div>
+            <div class="navbar-nav ml-auto">
+                <a style="font-size: large;" (click)="customerLogout()" class="nav-item nav-link">Logout</a>
+                <a style="font-size: large;" href="#" class="nav-item nav-link"></a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div
+  class="full-screen-container"
+  style="border: 2px solid; margin-top: 15px; margin: 2px"
+>
+  <div style="text-align: center; margin: 20px">
+    <span style="text-align: center"
+      ><h1 style="font-weight: bold;">Welcome {{loan.customer.customerName}}</h1></span
+    >
+  </div>
+  <br />
+  <hr />
+  <h1
+    style="
+      text-align: center;
+      color: #fff;
+      background-color: darkgreen;
+      width: 150px;
+      margin-left: 45%;
+    "
+  >
+    Loan Details
+  </h1>
+  <br />
+  <div style="width: 100%">
+    <span>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse1"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+        style="width: 100%"
+      >
+        Show Loan Amount
+      </button>
+    </span>
+    <br />
+    <div class="collapse" id="collapse1">
+      <div class="card card-body">Your Loan amount is Rs.<b>{{loan.loanAmount}}</b></div>
+    </div>
+    <div class="collapse" id="collapse1">
+        <div class="card card-body">Your Loan Tenure is Rs.<b>{{loan.loanTenure}}</b></div>
+      </div>
+  </div>
+  <br />
+  <div style="margin-top: 20px; margin-bottom: 20px">
+    <p>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse2"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+        style="width: 100%"
+      >
+        Your Details
+      </button>
+    </p>
+    <div class="collapse" id="collapse2" style="width: 100%">
+      <div class="card card-body">Name<b>{{loan.customer.customerName}}</b></div>
+    </div>
+    <div class="collapse" id="collapse2" style="width: 100%">
+        <div class="card card-body">Phone Number<b>{{loan.customer.customerPhone}}</b></div>
+      </div>
+      <div class="collapse" id="collapse2" style="width: 100%">
+        <div class="card card-body">Address<b>{{loan.customer.address}}</b></div>
+      </div>
+  </div>
+  <br />
+  <div style="margin-top: 20px; margin-bottom: 20px">
+    <p>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse3"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+        style="width: 100%"
+      >
+        Vehicle Details
+      </button>
+    </p>
+    <div class="collapse" id="collapse3">
+      <div class="card card-body">Vehicle Maker<b>{{loan.vehicle.vehicleMaker}}</b></div>
+    </div>
+    <div class="collapse" id="collapse3">
+        <div class="card card-body">Vehicle Model<b>{{loan.vehicle.vehicleModel}}</b></div>
+      </div>
+      <div class="collapse" id="collapse3">
+        <div class="card card-body">Vehicle Price<b>{{loan.vehicle.vehiclePrice}}</b></div>
+      </div>
+  </div>
+  <br />
+  <hr />
+  <h1
+    style="
+      text-align: center;
+      color: #fff;
+      background-color: darkgreen;
+      width: 150px;
+      margin-left: 45%;
+    "
+  >
+    Loan Status
+  </h1>
+  <div style="margin-top: 20px; margin-bottom: 20px">
+    <p>
+      <button
+        class="btn btn-primary"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapse4"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+        style="width: 100%"
+      >
+        Show Loan Status
+      </button>
+    </p>
+    <div class="collapse" id="collapse4">
+      <div class="card card-body">
+        <span *ngIf="red">
+          STATUS =
+          <h1 style="display: inline-block; color: red">REJECTED</h1>
+        </span>
+        <span *ngIf="green">
+            STATUS =
+            <h1 style="display: inline-block; color: rgb(1, 133, 29)">ACCEPTED</h1>
+          </span>
+          <span *ngIf="blue">
+            STATUS =
+            <h1 style="display: inline-block; color: rgb(9, 13, 255)">WAITING</h1>
+          </span>
+        <button
+          class="btn btn-primary"
+          type="button"
+          style="width: fit-content"
+        >
+          Reapply
+        </button>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+</div>

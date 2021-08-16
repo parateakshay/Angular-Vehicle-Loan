@@ -1,0 +1,277 @@
+
+<form id="loan-form">
+    <div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto calculate-form">
+      <div class="card card-body text-center mt-5">
+        <h1 class="heading display-5 pb-3">EMI Calculator</h1>
+        <form id="loan-form">
+          <div class="form-group">
+          <label>Loan Amount</label>
+           <input type="range" id="loanamt" name="points" min="0" max="100" step="1" value="1" />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">₹</span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                id="amount"
+                placeholder="Loan Amount"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+          <label>Interest Rates</label>
+           <input type="range" id="loanintrest" name="points" min="0" max="15" step=".1" value="5" />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">%</span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                id="interest"
+                placeholder="Interest"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+          <label>Loan Term</label>
+              <!--<select id="loanTerm"><option value="Years">Years</option><option value="Months">Months</option></select>-->
+           <input type="range" id="loantenure" name="points" min="0" max="30"  value="3"/>
+            <input
+              type="text"
+              id="years"
+              class="form-control"
+              placeholder="Years To Repay"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="submit"
+              value="Calculate"
+              class="btn btn-dark btn-block"
+            />
+          </div>
+        </form>
+   
+        <!-- Result -->
+        <div id="result">
+          <h5>Results</h5>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Monthly EMI</span>
+              </div>
+              <input type="number" class="form-control"id="monthly-payment" disabled />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Principal</span>
+              </div>
+              <input
+                type="number"
+                class="form-control"
+                id="total-payment"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Total Interest</span>
+              </div>
+              <input
+                type="number"
+                class="form-control"
+                id="total-interest"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="emichart">
+ <div class="innertxt" style="background-color:#fff; width:80%; height:80%; position:absolute; top:50%; left:50%; -webkit-transform:translate(-50%, -50%); transform:translate(-50%, -50%);-webkit-border-radius:50%;border-radius:50%;text-align:center;">
+     <div class="innerdata" style="position:absolute;display:inline-block; top:0; left:0;right:0;top:50%; left:50%; -webkit-transform:translate(-50%, -50%); transform:translate(-50%, -50%);">
+     <p>Principal</p>
+     <p id="totalamount">7188335</p>
+     </div>
+ </div>
+
+ <div id="chartContainer"></div>
+</div>
+</form>
+<script>
+    // Listen for Submit
+    document.getElementById("loan-form").addEventListener("submit", function(e) {
+      setTimeout(calculateResults, 100);
+      e.preventDefault();
+    });
+    
+    // Calculate Results
+    function calculateResults() { 
+    
+      var amount = document.getElementById("amount");
+      var interest = document.getElementById("interest");
+      var years = document.getElementById("years");
+      var monthlyPayment = document.getElementById("monthly-payment");
+      var totalPayment = document.getElementById("total-payment");
+      var totalInterest = document.getElementById("total-interest");
+      var monthrange = years * 12;
+    
+      var principal = parseFloat(amount.value);
+      var calculatedInterest = parseFloat(interest.value) / 100 / 12;
+      var calculatedPayments = parseFloat(years.value) * 12;
+    
+      // Computed Monthly payment
+      var x = Math.pow(1 + calculatedInterest, calculatedPayments);
+      var monthly = (principal * x * calculatedInterest) / (x - 1);
+    
+      if (isFinite(monthly)) {
+        monthlyPayment.value = monthly.toFixed(2);
+        totalPayment.value = (monthly * calculatedPayments).toFixed(2);
+        totalInterest.value = (monthly * calculatedPayments - principal).toFixed(2);
+        document.getElementById("result").style.display = "block";
+        //document.getElementById('principalamount').value = monthlyPayment.value;
+      } else {
+        showError("Please check number inputs");
+      }
+         var totalval = totalPayment.value;
+        var totalint = totalInterest.value;
+        $('#totalamount').html(totalval);
+        var intrestpercentage = (totalint/totalval)*100;
+        var principalpercentage = 100 - intrestpercentage;
+      chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'chartContainer',
+                    type: 'pie'
+                },
+          legend:{
+              align: 'right',
+              verticalAlign: 'bottom',
+              layout: 'vertical',
+              squareSymbol: true,
+            symbolRadius: 0,
+              floating:true,
+              x:100,
+              y: 50
+          },
+            colors: ['#d2a942', '#245bad'],
+                title: {
+                    text: ''
+                },
+                yAxis: {
+                    title: {
+                       // text: 'Total percent market share'
+                    },
+                },
+                plotOptions: {
+                    pie: {
+                        shadow: true
+                    }
+                },
+                tooltip: {
+                    enabled: false,
+                    /*formatter: function() {
+                        return '<b>'+ this.point.name +'</b>: '+ this.y;
+                    }*/
+                },
+               
+                series: [{
+                    name: 'EMI Calculator',
+                    data: [["Principal Loan Amount", principalpercentage],["Total Interest",intrestpercentage]],
+                    size: '100%',
+                    innerSize: '94%',
+                    showInLegend:true,
+                    dataLabels: {
+                        enabled: false
+                    }
+                }]
+            }); 
+        convertedtomonths();
+        
+    }
+    
+    
+    function showError(error) {
+      // Hide Results
+      document.getElementById("result").style.display = "none";
+      const errorDiv = document.createElement("div");
+      const card = document.querySelector(".card");
+      const heading = document.querySelector(".heading");
+      errorDiv.className = "alert alert-danger";
+      errorDiv.appendChild(document.createTextNode(error));
+      card.insertBefore(errorDiv, heading);
+      setTimeout(clearError, 3000);
+      function clearError() {
+        document.querySelector(".alert").remove();
+      }
+    }
+            
+    $(document).ready(function(){
+        getloanamountvalue();
+        var loanamountslider = $('#loanamt').val()*100000;
+        var loaninterest= $('#loanintrest').val();
+        var loantenure= $('#loantenure').val();
+        $('#amount').val(loanamountslider);
+        $('#interest').val(loaninterest);
+        $('#years').val(loantenure); 
+    });        
+    $('#amount').on('blur', function(){
+        $('#loanamt').val($(this).val()/100000);
+    });
+        
+    $('#interest').on('blur', function(){
+        $('#loanintrest').val($(this).val());
+    });  
+            
+    $('#years').on('blur', function(){
+        if($('#loanTerm').val()=='Months'){
+            convertedtomonths();
+        }else{
+        $('#loantenure').val($(this).val());
+        }
+    }); 
+            
+    function getloanamountvalue() {
+       $(document).on('input', '#loanamt', function() {
+           $('#amount').val($(this).val()*100000);
+       });
+     $(document).on('input', '#loanintrest', function() {
+           $('#interest').val($(this).val());
+       });
+    $(document).on('input', '#loantenure', function() {
+           $('#years').val($(this).val());
+       });
+    } 
+              
+    window.onload =function() {
+        calculateResults();
+    }
+    
+    function convertedtomonths(){
+        $('#loanTerm').change(function(){
+           // var convertedtomonths = (parseInt($('#loantenure').val() * 12));
+             var convertedtomonths = ($('#loantenure').attr('max') * 12);
+            //var loantermval = parseInt($('#loantenure').val());
+            if($(this).val() == 'Months'){
+                $('#years').val(convertedtomonths);
+                $('#loantenure').attr('max', convertedtomonths )
+                //$('#loantenure').val(convertedtomonths);
+                $('#years').val(convertedtomonths);
+                $('#loantenure').value = convertedtomonths;
+            }else{
+                
+            }
+        });
+    }
+         
+     </script>
