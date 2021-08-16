@@ -124,6 +124,7 @@ export class ApplyLoanComponent implements OnInit {
     onselectFile(e:any){
       this.flag = false;
       this.path=e.target.files[0];
+      this.af.upload("/images/"+this.customerEmailsession+" aadharCard",this.path)
       if (e.target.files)
       {
         
@@ -137,14 +138,15 @@ export class ApplyLoanComponent implements OnInit {
     }
     onUploadAadhar()
     {
-      
-      console.log(this.path)
-      this.af.upload("/images/"+this.customerEmailsession+" aadharCard",this.path)
       let storage = this.af.storage;
       storage.ref("images/"+this.customerEmailsession+" aadharCard" ).getDownloadURL().then((url_new) => {
         console.log(url_new)
         this.path1 = url_new
       })
+      console.log(this.path)
+      
+      
+     
       // this.path1 = this.customerEmailsession+" aadharCard"
       this.flag = true;
     }
@@ -154,6 +156,7 @@ export class ApplyLoanComponent implements OnInit {
     onselectFile1(e:any){
       this.flag1 = false;
       this.path=e.target.files[0];
+      this.af.upload("/images/"+this.customerEmailsession+" PanCard",this.path)
       if (e.target.files)
       {
         
@@ -169,7 +172,7 @@ export class ApplyLoanComponent implements OnInit {
     onUploadPancard()
     {
       console.log(this.path)
-      this.af.upload("/images/"+this.customerEmailsession+" PanCard",this.path)
+      
       let storage = this.af.storage;
       storage.ref("images/"+this.customerEmailsession+" PanCard").getDownloadURL().then((url_new) => {
         console.log(url_new)
@@ -182,6 +185,7 @@ export class ApplyLoanComponent implements OnInit {
     onselectFile2(e:any){
       this.flag2 = false;
       this.path=e.target.files[0];
+      this.af.upload("/images/"+this.customerEmailsession+" Photo",this.path)
       if (e.target.files)
       {
         
@@ -196,12 +200,13 @@ export class ApplyLoanComponent implements OnInit {
     onUploadPhoto()
     {
       console.log(this.path)
-      this.af.upload("/images/"+this.customerEmailsession+" Photo",this.path)
+      
       let storage = this.af.storage;
       storage.ref("images/"+this.customerEmailsession+" Photo").getDownloadURL().then((url_new) => {
         console.log(url_new)
         this.path3 = url_new
       })
+     
       // this.path3 = this.customerEmailsession+" Photo"
       this.flag2 = true;
     }
@@ -211,6 +216,7 @@ export class ApplyLoanComponent implements OnInit {
     onselectFile3(e:any){
       this.flag3 = false;
       this.path=e.target.files[0];
+      this.af.upload("/images/"+this.customerEmailsession+" SalarySlip",this.path)
       if (e.target.files)
       {
         
@@ -226,12 +232,15 @@ export class ApplyLoanComponent implements OnInit {
     {
       console.log(this.path)
       
-      let c =  this.af.upload("/images/"+this.customerEmailsession+" SalarySlip",this.path)
+      
       let storage = this.af.storage;
       storage.ref("images/"+this.customerEmailsession+" SalarySlip").getDownloadURL().then((url_new) => {
         console.log(url_new)
         this.path4 = url_new
       })
+     
+     
+      
       // console.log(this.af.storage.refFromURL("gs://vehicle-loan-f7f94.appspot.com/images/akshay.parate@somaiya.edu SalarySlip"))
       // this.path4 = this.customerEmailsession+" SalarySlip"
       this.flag3 = true;
@@ -244,8 +253,7 @@ export class ApplyLoanComponent implements OnInit {
       this.chkForm.payslip = this.path4
       this.chkForm.photo = this.path3
       this.chkForm.customerId = this.customerId
-      
-      
+      console.log(this.chkForm)
       this.customerService.addForms(this.chkForm)
       .subscribe(
         data2=>
