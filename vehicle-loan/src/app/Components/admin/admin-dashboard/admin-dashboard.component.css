@@ -4,4 +4,8 @@
     background-color: #d8e0e0;
     height: 100vh;
   }
- 
+  .vertical-menu {
+    width: 1700px;
+    height: 600px;
+    overflow-y: auto;
+  }

@@ -132,7 +132,9 @@
               <label for="Aadhar card" class="col-sm-2 col-form-label">Aadhar card</label>
               <div class="col-sm-10">
                   <input type='file' (change)="onselectFile($event)" id="aadharcard" formControlName="aadharcard">
+                  
                   <button type = "button" (click) = "onUploadAadhar()" [disabled]="flag">Upload</button>
+                  
                   
                   <div class="image-preview" id="imagePreview">
                       <span class="image-preview__default-text">
@@ -149,6 +151,8 @@
               <label for="Pan card" class="col-sm-2 col-form-label">Pan card</label>
               <div class="col-sm-10">
                   <input type='file' (change)="onselectFile1($event)" id="pancard" formControlName="pancard">
+                  
+                  
                   <button type = "button" (click) = "onUploadPancard()"[disabled]="flag1">Upload</button>
                   <div class="image-preview" id="imagePreview">
                       <span class="image-preview__default-text">

@@ -13,6 +13,7 @@
           "strict": true
         }
       },
+      
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -30,6 +31,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            
             "styles": [
               "src/custom-theme.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -72,7 +74,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vehicle-loan:build"
+            "browserTarget": "vehicle-loan:build",
+            "proxyConfig": "./proxy.conf.json"
           },
           "configurations": {
             "production": {

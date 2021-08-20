@@ -13,6 +13,7 @@ import { ApplicationFormComponent } from './Components/loan/application-form/app
 import { ApplyLoanComponent } from './Components/loan/apply-loan/apply-loan.component';
 import { EmiCalculatorComponent } from './Components/loan/emi-calculator/emi-calculator.component';
 import { LoanOfferComponent } from './Components/loan/loan-offer/loan-offer.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {path:'login',component:CustomerLoginComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:'customer-register',component:CustomerRegisterComponent},
   {path:'about-us',component:AboutUsComponent},
   {path:'admin-login',component:AdminLoginComponent},
-  {path:'emi-calculator',component:EmiCalculatorComponent}
+  {path:'emi-calculator',component:EmiCalculatorComponent},
+  {path:'test',component:TestComponent}
 ];
 
 @NgModule({

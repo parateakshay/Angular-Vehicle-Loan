@@ -13,11 +13,15 @@ import { Forms } from '../Forms';
 
 @Component({
   selector: 'app-apply-loan',
+  
   templateUrl: './apply-loan.component.html',
   styleUrls: ['./apply-loan.component.css']
 })
 export class ApplyLoanComponent implements OnInit {
   
+  button = 'Submit';
+  isLoading = false;
+
   myReactiveForm=new FormGroup({
     'name1': new FormControl(''),
     // 'name2': new FormControl(''),
@@ -44,6 +48,7 @@ export class ApplyLoanComponent implements OnInit {
     'photo'  : new FormControl(''),
     'salaryslip'  : new FormControl(''),
   });
+  
   customerEmailsession:any = window.sessionStorage.getItem('customerEmailSession');
   customer:Customer = new Customer;
   customerNew:Customer = new Customer;
@@ -62,6 +67,9 @@ export class ApplyLoanComponent implements OnInit {
   flag2:boolean = true;
   flag3:boolean = true;
   constructor(private customerService:CustomerService, private router:Router, private http:HttpClient, private af:AngularFireStorage) { }
+
+    
+
 
   ngOnInit(): void {
     this.customerId = window.sessionStorage.getItem("customerIdsession");

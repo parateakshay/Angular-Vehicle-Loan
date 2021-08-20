@@ -80,4 +80,11 @@ export class CustomerService {
     // console.log(this.http.post(`${this.baseUrl}`+'/checkEligibility/check-Eligiblity', checkEligibility))
     return this.http.post(`${this.baseUrl}`+'/checkEligibility/add-chkforms', form);
   }
+
+  getStockData()
+  {
+    // console.log(this.http.get(this.baseUrl+'/loginCustomerByEmail/'+customerEmail))
+    return this.http.get<any>("https://priceapi.moneycontrol.com/techCharts/techChartController/history?symbol=TATASTEEL&resolution=1D&from=1595229376&to=1629359461")
+  }
+
 }
